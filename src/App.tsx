@@ -3,85 +3,89 @@ import { Critera, CriteriaType } from './components/Criteria'
 
 const criteria: CriteriaType[] = [
   {
-    question: 'Have I thought about it for at least two weeks?',
-    buy: 'Yes',
-    noBuy: 'No'
+    question: 'Har jag tänkt på saken i mer än två veckor?',
+    buy: 'Ja',
+    noBuy: 'Nej'
   },
   {
-    question: "Does it solve a problem that I've genuinely noticed?",
-    buy: 'Yes',
-    noBuy: 'No'
+    question: 'Löser det ett problem jag geniunt har uppmärksammat?',
+    buy: 'Ja',
+    noBuy: 'Nej'
   },
   {
-    question: 'Do I already own something similar?',
-    buy: 'No',
-    noBuy: 'Yes'
+    question: 'Äger jag redan något liknande?',
+    buy: 'Nej',
+    noBuy: 'Ja'
   },
   {
-    question:
-      'Is buying it worth giving up progress towards my next financial goal?',
-    buy: 'No',
-    noBuy: 'Yes'
+    question: 'Är det värt att ta ett steg från mina finansiella mål?',
+    buy: 'Ja',
+    noBuy: 'Nej'
   },
   {
-    question: 'Where will it be in five years?',
-    buy: 'Used or in use',
-    noBuy: 'Not in use'
+    question: 'Var kommer den vara om fem år?',
+    buy: 'Använd eller används',
+    noBuy: 'Oanvänd'
   },
   {
-    question: 'Where will I put it if I buy it?',
-    buy: 'I have a place in mind',
-    noBuy: 'Not sure'
+    question: 'Var ska jag sätta den om jag köper den?',
+    buy: 'Jag vet precis var den ska vara',
+    noBuy: 'Oklart'
   },
   {
-    question: 'How long will I have to work to pay for it?',
-    buy: 'Not very long',
-    noBuy: 'A significant amount of time'
+    question: 'Hur länge måste jag jobba för att tjäna ihop till den?',
+    buy: 'Inte särskilt länge',
+    noBuy: 'Länge'
   },
   {
-    question: 'Can I be productive and happy without it?',
-    buy: 'No',
-    noBuy: 'Yes'
+    question: 'Kan jag vara produktiv och lycklig utan den?',
+    buy: 'Nej',
+    noBuy: 'Ja'
   },
   {
-    question: 'What is the cost of it per use?',
-    buy: 'Worth my money',
-    noBuy: 'Not worth my money'
+    question: 'Vad är kostnaden per användning?',
+    buy: 'Värd pengarna',
+    noBuy: 'Inte värd pengarna'
   },
   {
-    question: 'Does buying it support my priorities?',
-    buy: 'Yes',
-    noBuy: 'No'
+    question: 'Matchar den här saken mina prioriteringar?',
+    buy: 'Ja',
+    noBuy: 'Nej'
   },
   {
-    question: 'Is this the best way for me to obtain this?',
-    buy: 'Yes',
-    noBuy: 'No'
+    question: 'Är det här det bästa sättet för mig att skaffa den här saken?',
+    buy: 'Ja',
+    noBuy: 'Nej'
   },
   {
-    question: 'Is it a high-quality item with a reasonable price tag?',
-    buy: 'Yes',
-    noBuy: 'No'
+    question: 'Är saken av hög kvalitet och har den ett rimligt pris?',
+    buy: 'Ja',
+    noBuy: 'Nej'
   },
   {
-    question: 'What is my current mental state?',
-    buy: 'Calm and neutral',
-    noBuy: 'Allured by internal or external forces'
+    question: 'Hur är min sinnesstämning just nu?',
+    buy: 'Lugn och neutral',
+    noBuy: 'Ur balans åt något håll'
   },
   {
-    question: "What is the real reason I'm considering buying it?",
-    buy: 'An intentional reason',
-    noBuy: 'An impulsive reason'
+    question: 'Är det här ett impulsköp?',
+    buy: 'Nej',
+    noBuy: 'Ja'
   }
 ]
 
 function App() {
   return (
-    <>
-      {criteria.map((c: CriteriaType, i) => (
-        <Critera key={i} criteria={c} />
-      ))}
-    </>
+    <div className='solid-shadow flex flex-col items-center w-3/4 max-w-[1000px] rounded bg-white'>
+      <div className='py-2 px-4 bg-[#1F8DC2] w-full rounded-t'>
+        <h1 className='font-bold text-white'>Ska jag köpa?</h1>
+      </div>
+      <div className='w-full'>
+        {criteria.map((c: CriteriaType, i) => (
+          <Critera key={i} criteria={c} />
+        ))}
+      </div>
+    </div>
   )
 }
 
