@@ -5,6 +5,9 @@ export default {
     extend: {
       fontFamily: {
         alegreya: ['Alegreya', 'serif']
+      },
+      colors: {
+        brownie: '#402711'
       }
     }
   },

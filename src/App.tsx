@@ -76,9 +76,9 @@ const criteria: CriteriaType[] = [
 
 function App() {
   return (
-    <div className='solid-shadow flex flex-col items-center w-3/4 max-w-[1000px] rounded bg-white'>
-      <div className='py-2 px-4 bg-[#1F8DC2] w-full rounded-t'>
-        <h1 className='font-bold text-white'>Ska jag köpa?</h1>
+    <div className='solid-shadow flex flex-col items-center w-3/4 max-w-[1000px] rounded bg-white border-2 border-brownie divide-2 divide-brownie'>
+      <div className='py-2 px-4 bg-[#F98878] w-full'>
+        <h1 className='font-bold text-brownie'>Ska jag köpa?</h1>
       </div>
       <div className='w-full'>
         {criteria.map((c: CriteriaType, i) => (
