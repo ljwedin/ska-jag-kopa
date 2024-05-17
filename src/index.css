@@ -17,3 +17,7 @@
 .solid-shadow {
   box-shadow: -10px 10px #512a08;
 }
+
+.button-shadow {
+  box-shadow: -4px 4px #512a08;
+}

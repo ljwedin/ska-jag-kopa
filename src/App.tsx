@@ -1,88 +1,50 @@
+import { useCallback, useState } from 'react'
 import './App.css'
-import { Critera, CriteriaType } from './components/Criteria'
+import Criteria from './components/Criteria'
+import { criteria } from './assets/criteriaData'
 
-const criteria: CriteriaType[] = [
-  {
-    question: 'Har jag tänkt på saken i mer än två veckor?',
-    buy: 'Ja',
-    noBuy: 'Nej'
-  },
-  {
-    question: 'Löser det ett problem jag geniunt har uppmärksammat?',
-    buy: 'Ja',
-    noBuy: 'Nej'
-  },
-  {
-    question: 'Äger jag redan något liknande?',
-    buy: 'Nej',
-    noBuy: 'Ja'
-  },
-  {
-    question: 'Är det värt att ta ett steg från mina finansiella mål?',
-    buy: 'Ja',
-    noBuy: 'Nej'
-  },
-  {
-    question: 'Var kommer den vara om fem år?',
-    buy: 'Använd eller används',
-    noBuy: 'Oanvänd'
-  },
-  {
-    question: 'Var ska jag sätta den om jag köper den?',
-    buy: 'Jag vet precis var den ska vara',
-    noBuy: 'Oklart'
-  },
-  {
-    question: 'Hur länge måste jag jobba för att tjäna ihop till den?',
-    buy: 'Inte särskilt länge',
-    noBuy: 'Länge'
-  },
-  {
-    question: 'Kan jag vara produktiv och lycklig utan den?',
-    buy: 'Nej',
-    noBuy: 'Ja'
-  },
-  {
-    question: 'Vad är kostnaden per användning?',
-    buy: 'Värd pengarna',
-    noBuy: 'Inte värd pengarna'
-  },
-  {
-    question: 'Matchar den här saken mina prioriteringar?',
-    buy: 'Ja',
-    noBuy: 'Nej'
-  },
-  {
-    question: 'Är det här det bästa sättet för mig att skaffa den här saken?',
-    buy: 'Ja',
-    noBuy: 'Nej'
-  },
-  {
-    question: 'Är saken av hög kvalitet och har den ett rimligt pris?',
-    buy: 'Ja',
-    noBuy: 'Nej'
-  },
-  {
-    question: 'Hur är min sinnesstämning just nu?',
-    buy: 'Lugn och neutral',
-    noBuy: 'Ur balans åt något håll'
-  },
-  {
-    question: 'Är det här ett impulsköp?',
-    buy: 'Nej',
-    noBuy: 'Ja'
-  }
-]
+const App: React.FC = () => {
+  const [buttonStates, setButtonStates] = useState<{
+    [key: string]: { buyPressed: boolean; noBuyPressed: boolean }
+  }>({})
 
-function App() {
+  const handleToggleBuy = useCallback((id: string) => {
+    setButtonStates((prevState) => ({
+      ...prevState,
+      [id]: {
+        ...prevState[id],
+        buyPressed: !prevState[id]?.buyPressed,
+        noBuyPressed: prevState[id].buyPressed && false
+      }
+    }))
+  }, [])
+
+  const handleToggleNoBuy = useCallback((id: string) => {
+    setButtonStates((prevState) => ({
+      ...prevState,
+      [id]: {
+        ...prevState[id],
+        noBuyPressed: !prevState[id]?.noBuyPressed,
+        buyPressed: prevState[id].noBuyPressed && false
+      }
+    }))
+  }, [])
+
   return (
-    <div className='solid-shadow flex flex-col items-center w-3/4 max-w-[1000px] rounded bg-white border-2 border-brownie divide-2 divide-brownie'>
+    <div className='flex flex-col solid-shadow w-3/4 min-w-[840px] max-w-[1000px] bg-white border-2 border-brownie divide-2 divide-brownie'>
       <div className='py-2 px-4 bg-[#F98878] w-full'>
         <h1 className='font-bold text-brownie'>Ska jag köpa?</h1>
       </div>
-      <div className='w-full'>
-        {criteria.map((c: CriteriaType, i) => (
-          <Critera key={i} criteria={c} />
+      <div className='p-5 flex flex-col gap-4'>
+        {criteria.map((item) => (
+          <Criteria
+            key={item.key}
+            criteria={item}
+            onToggleBuy={handleToggleBuy}
+            onToggleNoBuy={handleToggleNoBuy}
+            buyPressed={buttonStates[item.key]?.buyPressed || false}
+            noBuyPressed={buttonStates[item.key]?.noBuyPressed || false}
+          />
         ))}
       </div>
     </div>

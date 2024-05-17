@@ -1,17 +1,69 @@
-export interface CriteriaType {
-  question: string
-  buy: string
-  noBuy: string
+import React from 'react'
+import { CriteriaType } from '../assets/criteriaData'
+import classNames from 'classnames'
+
+interface CriteriaComponentProps {
+  criteria: CriteriaType
+  onToggleBuy: (id: string) => void
+  onToggleNoBuy: (id: string) => void
+  buyPressed: boolean
+  noBuyPressed: boolean
 }
 
-export function Critera(props: { criteria: CriteriaType }) {
-  return (
-    <div className='flex justify-between p-4'>
-      <p className='w-1/2'>{props.criteria.question}</p>
-      <div className='flex justify-evenly'>
-        <p>{props.criteria.buy}</p>
-        <p>{props.criteria.noBuy}</p>
+const Criteria: React.FC<CriteriaComponentProps> = React.memo(
+  ({ criteria, onToggleBuy, onToggleNoBuy, buyPressed, noBuyPressed }) => {
+    const buttonBuyClasses = classNames(
+      'px-6',
+      'py-2',
+      'text-sm',
+      'button-shadow',
+      'transition-all',
+      'duration-200',
+      'hover:scale-105',
+      'border-2',
+      'border-brownie',
+      {
+        'bg-mint': buyPressed,
+        'bg-lemon': !buyPressed
+      }
+    )
+
+    const buttonNoBuyClasses = classNames(
+      'px-6',
+      'py-2',
+      'text-sm',
+      'button-shadow',
+      'transition-all',
+      'duration-200',
+      'hover:scale-105',
+      'border-2',
+      'border-brownie',
+      {
+        'bg-mint': noBuyPressed,
+        'bg-lemon': !noBuyPressed
+      }
+    )
+
+    return (
+      <div className='flex justify-between items-center gap-20'>
+        <p>{criteria.question}</p>
+        <div className='flex gap-4'>
+          <button
+            className={buttonBuyClasses}
+            onClick={() => onToggleBuy(criteria.key)}
+          >
+            {criteria.buy}
+          </button>
+          <button
+            className={buttonNoBuyClasses}
+            onClick={() => onToggleNoBuy(criteria.key)}
+          >
+            {criteria.noBuy}
+          </button>
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+)
+
+export default Criteria

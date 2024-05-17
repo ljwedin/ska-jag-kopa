@@ -7,7 +7,9 @@ export default {
         alegreya: ['Alegreya', 'serif']
       },
       colors: {
-        brownie: '#402711'
+        brownie: '#402711',
+        lemon: '#FCD26C',
+        mint: '#78BEA2'
       }
     }
   },
